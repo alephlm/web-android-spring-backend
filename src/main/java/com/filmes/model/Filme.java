@@ -8,6 +8,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -19,6 +20,7 @@ public class Filme extends AbstractEntity{
 	@ElementCollection
 	private Set<String> atores = new HashSet<>();
 	private String sinopse;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dataLancamento;
 	private Integer Nota;
 

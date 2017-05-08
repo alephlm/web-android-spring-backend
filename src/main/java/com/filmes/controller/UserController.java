@@ -13,6 +13,7 @@ import com.filmes.model.User;
 import com.filmes.service.UserService;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -34,7 +35,12 @@ public class UserController {
     
     @RequestMapping(value = "/favoritar/{id}", method = RequestMethod.GET)
     public String registration(@PathVariable Long id) {
-    	userService.favoritar(id);
-    	return "OK\n";
+        userService.favoritar(id);
+        return "OK\n";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "OK";
     }
 }
