@@ -1,6 +1,6 @@
 package com.filmes.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ public class User extends AbstractEntity{
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="favoritos", joinColumns={@JoinColumn(name="user_id")},
     			inverseJoinColumns={@JoinColumn(name="filme_id")})
-    private Set<Filme> filmes;
+    private List<Filme> filmes;
 
     private String username;
 
@@ -38,14 +38,18 @@ public class User extends AbstractEntity{
     private Role role;
     
     public void addFilme(Filme filme) {
-    	this.filmes.add(filme);
+        this.filmes.add(filme);
+    }
+
+    public void removeFilme(Filme filme) {
+        this.filmes.remove(filme);
     }
     
-    public Set<Filme> getFilmes() {
+    public List<Filme> getFilmes() {
 		return filmes;
 	}
 
-	public void setFilmes(Set<Filme> filmes) {
+	public void setFilmes(List<Filme> filmes) {
 		this.filmes = filmes;
 	}
 

@@ -12,4 +12,8 @@ public interface FilmeService {
 	
 	List<Filme> listAll();
 
+	List<Filme> listFavoritos();
+
+	List<Filme> deleteFavorito(Long id);
+
 }

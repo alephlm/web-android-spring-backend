@@ -3,6 +3,7 @@ package com.filmes.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -26,13 +27,13 @@ public class Filme extends AbstractEntity{
 
 	@ManyToMany(mappedBy="filmes")
 	@JsonIgnore
-    private Set<User> users;
+    private List<User> users;
 	
 	
-	public Set<User> getUsers() {
+	public List<User> getUsers() {
 		return users;
 	}
-	public void setUsers(Set<User> users) {
+	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 	public String getTitulo() {
