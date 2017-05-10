@@ -28,7 +28,8 @@ public class User extends AbstractEntity{
     @JoinTable(name="favoritos", joinColumns={@JoinColumn(name="user_id")},
     			inverseJoinColumns={@JoinColumn(name="filme_id")})
     private List<Filme> filmes;
-
+	
+	@Column(unique=true)
     private String username;
 
     private String password;

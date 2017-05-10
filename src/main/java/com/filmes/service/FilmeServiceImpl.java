@@ -25,11 +25,6 @@ public class FilmeServiceImpl implements FilmeService{
 	}
 
 	@Override
-	public Filme findByTitulo(String titulo) {
-		return filmeRepository.findByTitulo(titulo);
-	}
-
-	@Override
 	public List<Filme> listAll() {
 		return filmeRepository.findAll();
 	}
@@ -41,13 +36,19 @@ public class FilmeServiceImpl implements FilmeService{
     	return user.getFilmes();
 	}
 
-	public List<Filme> deleteFavorito(Long id){
+	@Override
+	public List<Filme> deleteFavorito(Long id) {
 		CurrentUser currentUser = (CurrentUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	User user = userRepository.getOne(currentUser.getId());
         Filme filme = filmeRepository.findOne(id);
         user.removeFilme(filme);
         userRepository.save(user);
         return user.getFilmes();
+	}
+
+	@Override
+	public List<Filme> procuraFilme(String titulo) {
+		return filmeRepository.findByTituloContaining(titulo);
 	}
 
 }
