@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.filmes.model.User;
 import com.filmes.service.UserService;
-import javax.servlet.http.HttpSession;
-import java.util.Map;
-import java.util.Collections;
 
 @RestController
 @RequestMapping("/user")
