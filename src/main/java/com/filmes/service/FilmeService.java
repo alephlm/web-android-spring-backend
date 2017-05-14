@@ -6,7 +6,7 @@ import com.filmes.model.Filme;
 
 public interface FilmeService {
 	
-	void save(Filme filme);
+	Filme save(Filme filme);
 	
 	List<Filme> listAll();
 
@@ -15,5 +15,7 @@ public interface FilmeService {
 	List<Filme> deleteFavorito(Long id);
 
 	List<Filme> procuraFilme(String titulo);
+	
+	void delete(Long id);
 
 }

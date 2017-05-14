@@ -20,8 +20,8 @@ public class FilmeServiceImpl implements FilmeService{
     private UserRepository userRepository;
 
 	@Override
-	public void save(Filme filme) {
-		filmeRepository.save(filme);
+	public Filme save(Filme filme) {
+		return filmeRepository.save(filme);
 	}
 
 	@Override
@@ -49,6 +49,17 @@ public class FilmeServiceImpl implements FilmeService{
 	@Override
 	public List<Filme> procuraFilme(String titulo) {
 		return filmeRepository.findByTituloContaining(titulo);
+	}
+
+	@Override
+	public void delete(Long id) {
+		Filme filme = filmeRepository.getOne(id);
+		List<User> users = filme.getUsers();
+		for (User u : users) {
+			u.removeFilme(filme);
+			userRepository.save(u);
+		}
+		filmeRepository.delete(id);
 	}
 
 }

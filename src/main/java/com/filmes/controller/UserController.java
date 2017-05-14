@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.filmes.model.User;
 import com.filmes.service.UserService;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -24,19 +29,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@RequestBody User user) {
+    public User registration(@RequestBody User user) {
 
         User u = new User(user.getUsername(), user.getPassword());
 
-        userService.save(u);
-
-        return "OK";
+        return userService.save(u);
     }
     
     @RequestMapping(value = "/favoritar/{id}", method = RequestMethod.GET)
     public String registration(@PathVariable Long id) {
         userService.favoritar(id);
-        return "OK\n";
+        return "OK";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

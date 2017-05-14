@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
@@ -18,8 +17,6 @@ public class Filme extends AbstractEntity{
 	private String titulo;
 	private String categoria;
 	private String diretor;
-	@ElementCollection
-	private Set<String> atores = new HashSet<>();
 	private String sinopse;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dataLancamento;
@@ -28,7 +25,6 @@ public class Filme extends AbstractEntity{
 	@ManyToMany(mappedBy="filmes")
 	@JsonIgnore
     private List<User> users;
-	
 	
 	public List<User> getUsers() {
 		return users;
@@ -53,12 +49,6 @@ public class Filme extends AbstractEntity{
 	}
 	public void setDiretor(String diretor) {
 		this.diretor = diretor;
-	}
-	public Set<String> getAtores() {
-		return atores;
-	}
-	public void setAtores(Set<String> atores) {
-		this.atores = atores;
 	}
 	public String getSinopse() {
 		return sinopse;
